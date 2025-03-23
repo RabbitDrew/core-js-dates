@@ -64,7 +64,7 @@ function getTime(date) {
  * '03 Dec 1995 00:12:00 UTC' => 'Sunday'
  * '2024-01-30T00:00:00.000Z' => 'Tuesday'
  */
-function getDayName(date) {
+function getDayName(inputDate) {
   const daysArr = [
     'Sunday',
     'Monday',
@@ -74,7 +74,19 @@ function getDayName(date) {
     'Friday',
     'Saturday',
   ];
-  const dayIndex = new Date(date).getDay();
+
+  let date = inputDate;
+
+  if (!(date instanceof Date)) {
+    date = new Date(date);
+    if (Number.isNaN(date)) {
+      throw new TypeError('Expected a Date object');
+    }
+  }
+  const utcDate = new Date(
+    Date.UTC(date.getFullYear(), date.getMonth(), date.getDate())
+  );
+  const dayIndex = utcDate.getUTCDay();
   return daysArr[dayIndex];
 }
 
