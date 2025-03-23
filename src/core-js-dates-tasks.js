@@ -261,10 +261,24 @@ function getNextFridayThe13th(/* date */) {
  * Date(2024, 5, 1) => 2
  * Date(2024, 10, 10) => 4
  */
-function getQuarter(/* date */) {
-  throw new Error('Not implemented');
-}
+function getQuarter(date) {
+  let quarter = 1;
+  const month = date.getMonth();
+  if (month >= 1 && month <= 3) {
+    quarter = 1;
+  }
+  if (month >= 4 && month <= 6) {
+    quarter = 2;
+  }
+  if (month >= 7 && month <= 9) {
+    quarter = 3;
+  }
+  if (month >= 10 && month <= 12) {
+    quarter = 4;
+  }
 
+  return quarter;
+}
 /**
  * Generates an employee's work schedule within a specified date range, based on a pattern of working and off days.
  * The start and end dates of the period are inclusive.
